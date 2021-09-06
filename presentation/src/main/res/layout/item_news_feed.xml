@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="newsFeed"
+            type="com.example.cleanarchitecture.model.NewsFeedItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_196">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/newsFeedViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="bottom"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
+
+        <View
+            android:id="@+id/frame_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#45000000" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:paddingHorizontal="@dimen/dp_12"
+            android:text="@{newsFeed.title}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_3"
+            android:text="@{newsFeed.publisher.name}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toTopOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_3"
+            android:text="@{newsFeed.publishedDate}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toTopOf="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@id/tv_publisher" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:src="@drawable/ic_baseline_cancel_presentation_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

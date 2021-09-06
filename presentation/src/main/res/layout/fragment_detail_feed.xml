@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.cleanarchitecture.ui.detail.DetailFeedViewModel" />
+
+        <variable
+            name="newsFeed"
+            type="com.example.cleanarchitecture.model.DetailNewsFeedItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/layout_appbar"
+            layout="@layout/header_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:newsFeed="@{newsFeed}" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_56">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_16"
+                    android:text="@{newsFeed.title}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_17"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_publisher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/dp_16"
+                    android:text="@{newsFeed.publisherItem.name}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+                <TextView
+                    android:id="@+id/tv_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_16"
+                    android:text="@{newsFeed.description}"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_publisher" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_des"
+                    loadUrl="@{null}"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_172"
+                    android:layout_marginVertical="@dimen/dp_16"
+                    android:paddingHorizontal="@dimen/dp_16"
+                    app:layout_constraintTop_toBottomOf="@id/tv_des" />
+
+                <View
+                    android:id="@+id/view_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:background="@color/light_gray"
+                    app:layout_constraintTop_toBottomOf="@id/img_des" />
+
+                <TextView
+                    android:id="@+id/tv_another_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="@string/title_another_news"
+                    android:textSize="@dimen/sp_16"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_space" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_another_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tv_another_news" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
